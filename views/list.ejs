@@ -1,0 +1,78 @@
+<%- include("header") -%>
+<div class="homepage-btn">
+  <button class="home-btn"><a href="/homepage">Home</a></button>
+</div>
+<div class="box" id="datetime">
+  <table>
+    <tr>
+      <td colspan="2">
+        <h1 style="color: grey; padding-right: 0px; margin-left: 42px;" ><%= date %></h1>
+      </td>
+      <td>
+        <h4 style="color: grey;"><%=month%></h4>
+      </td>
+      <td>
+        <h4 style="color: grey;"><%= year %></h4>
+      </td>
+      <td style="padding-left: 73px;">
+          
+        <h2 style="color: grey;"><%= day %></h2>
+      </td>
+    </tr>
+    
+  </table>
+  
+  
+ 
+
+</div>
+  <div class="box" id="heading">
+    <h1 class="ltitle">
+      <%= listTitle %>
+    </h1>
+  </div>
+
+  <div class="box">
+    <form action="/delete" method="post">
+
+
+      <% newListItems.forEach(function(item){ %>
+
+        <form action="/delete" method="post">
+          <div class="item">
+
+
+            <button class="button-37" role="button" name="checkbox" value="<%=item._id%>"
+              onChange="this.form.submit()"><i class="fa-sharp fa-solid fa-trash"></i></button>
+
+            <p>
+              <%=item.name%>
+            </p>
+            <div class="status">
+
+              <h4 id="timeinput"><%= item.time %></h4>
+              <% if (item.done) { %>
+                <span class="material-symbols-outlined">
+                  sentiment_very_satisfied
+                  </span>
+              <% } else { %>
+                <span class="material-symbols-outlined">
+                  sentiment_dissatisfied
+                  </span>
+              <% } %>
+            </div>
+          </div>
+          <input type="hidden" name="listName" value="<%= listTitle %>"></input>
+        </form>
+        <% }) %>
+
+      </div>
+      <div class="box">
+        <form class="item" action="/" method="post">
+          <input type="text" name="newitem" placeholder="New Item" autocomplete="off">
+          <input type="time" name="time" id="timein">
+          <button type="submit" name="list" value="<%=listTitle%>" class="add-btn">add</button>          
+        </form>
+      </div>
+
+  <%- include("footer") -%>
