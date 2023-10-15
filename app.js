@@ -5,8 +5,8 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 dotenv.config();
 const app = express();
-const accountSid = process.env.ACCOUNT_SID;
-const authToken = process.env.AUTH_TOKEN;
+const accountSid = "ACeaeb1b0ee39771d0230220f55e316c4c";
+const authToken = "69a428802d5c508c73c98ebc8ca53b9e" ;
 const client = require("twilio")(accountSid, authToken);
 const cron = require("node-cron");
 const passport = require("passport");
@@ -86,7 +86,7 @@ passport.deserializeUser(function(user, cb) {
 passport.use(new GoogleStrategy({
   clientID: "359915866245-qoqfac105vq6aa5l3jmofenp7eog686u.apps.googleusercontent.com",
   clientSecret: "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",
-  callbackURL: "http://localhost:9000/auth/google/login"
+  callbackURL: "http://16.170.205.2:9000/auth/google/login"
 },
 function(accessToken, refreshToken, profile, cb) {
   console.log(profile);
@@ -431,7 +431,7 @@ app.delete("/card/:id", (req, res) => {
 
 //database connection
 mongoose
-  .connect("mongodb://127.0.0.1:27017/todolistDB")
+  .connect("mongodb+srv://srjsachan:8858856132@portfolioprojects.1mx7zhr.mongodb.net/todolist?retryWrites=true&w=majority")
   .then(() => {
     console.log("Connected!!");
   })
